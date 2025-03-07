@@ -5,7 +5,8 @@
 const dotenv = require("dotenv");
 const express = require('express');
 const mongoose = require("mongoose");
-const Fruit = require(".Models/fruit.js");
+const Fruit = require("./Models/fruit.js");
+
 
 // initialize the express application
 const app = express();
@@ -23,7 +24,7 @@ mongoose.connection.on("connected", () => {
 
 // mount middleware functions here
 app.use(express.urlencoded({ extended: false }))
-
+app.use(express.json());
 // body parser middleware: this function reads the request box
 // and decodes it into req.body so we can access form data!
 
@@ -60,9 +61,8 @@ app.post("/fruits", async (req, res) => {
 app.get("/fruits", async (req, res) => {
   const allFruits = await Fruit.find({});
   console.log(allFruits);
-  res.render("fruits/index.ejs", {fruits})
-  res.send("Welcome to the index page");
-})
+  res.render("fruits/index.ejs", { fruits: allFruits} )
+});
 
 const portNumber = 3000;
 app.listen(portNumber, () => {
