@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
 
-const fruitSchema = new monggose.Schema({
+
+const fruitSchema = new mongoose.Schema({
   name: String,
-  isReadyToEat: Boolean
+  isReadyToEat: Boolean,
 });
 
-const Fruit = mongoose.model("Fruit", fruitSchema);
+const Fruit = mongoose.model("Fruit", fruitSchema); // create model
 
 module.exports = Fruit;
-// this module exports the fruit model
-// the fruit model provides us with a
